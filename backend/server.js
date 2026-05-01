@@ -16,7 +16,7 @@ app.use(express.json());
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'https://skills-swap-rho.vercel.app', process.env.FRONTEND_URL],
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
