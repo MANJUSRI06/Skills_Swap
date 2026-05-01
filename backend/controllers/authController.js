@@ -37,6 +37,13 @@ const registerUser = async (req, res) => {
         name: user.name,
         email: user.email,
         avatarColor: user.avatarColor,
+        avatarImage: user.avatarImage,
+        department: user.department,
+        year: user.year,
+        bio: user.bio,
+        skillsTeach: user.skillsTeach,
+        skillsLearn: user.skillsLearn,
+        availability: user.availability,
         token: generateToken(user._id),
       });
     } else {
@@ -62,6 +69,13 @@ const authUser = async (req, res) => {
         name: user.name,
         email: user.email,
         avatarColor: user.avatarColor,
+        avatarImage: user.avatarImage,
+        department: user.department,
+        year: user.year,
+        bio: user.bio,
+        skillsTeach: user.skillsTeach,
+        skillsLearn: user.skillsLearn,
+        availability: user.availability,
         token: generateToken(user._id),
       });
     } else {

@@ -26,6 +26,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/requests', require('./routes/requestRoutes'));
 app.use('/api/messages', require('./routes/messageRoutes'));
+app.use('/api/chatbot', require('./routes/chatbotRoutes'));
 
 // Basic route
 app.get('/', (req, res) => {

@@ -42,8 +42,8 @@ const SwapRequestsPage = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-brand-navy">Swap Requests</h1>
-        <p className="text-gray-600 mt-2">Manage your incoming and outgoing skill swap proposals.</p>
+        <h1 className="text-3xl font-bold text-brand-navy dark:text-white">Swap Requests</h1>
+        <p className="text-gray-600 dark:text-gray-300 mt-2">Manage your incoming and outgoing skill swap proposals.</p>
       </div>
 
       <div className="flex gap-4 mb-8">
@@ -51,8 +51,8 @@ const SwapRequestsPage = () => {
           onClick={() => setActiveTab('incoming')}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
             activeTab === 'incoming' 
-              ? 'bg-brand-navy text-white shadow-lg' 
-              : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+              ? 'bg-brand-navy dark:bg-brand-cyan text-white dark:text-brand-navy shadow-lg' 
+              : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
           }`}
         >
           <Inbox size={18} />
@@ -67,8 +67,8 @@ const SwapRequestsPage = () => {
           onClick={() => setActiveTab('outgoing')}
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
             activeTab === 'outgoing' 
-              ? 'bg-brand-navy text-white shadow-lg' 
-              : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+              ? 'bg-brand-navy dark:bg-brand-cyan text-white dark:text-brand-navy shadow-lg' 
+              : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
           }`}
         >
           <Send size={18} />
@@ -87,8 +87,8 @@ const SwapRequestsPage = () => {
           <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ${activeTab === 'incoming' ? 'bg-brand-cyan/10 text-brand-cyan' : 'bg-brand-violet/10 text-brand-violet'}`}>
             {activeTab === 'incoming' ? <Inbox size={32} /> : <Send size={32} />}
           </div>
-          <h3 className="text-xl font-bold text-gray-700 mb-2">No {activeTab} requests</h3>
-          <p className="text-gray-500 max-w-md mx-auto">
+          <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">No {activeTab} requests</h3>
+          <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
             {activeTab === 'incoming' 
               ? "You don't have any incoming requests yet. Make sure your profile has skills you can teach!" 
               : "You haven't sent any requests yet. Discover peers and send a request to start swapping."}

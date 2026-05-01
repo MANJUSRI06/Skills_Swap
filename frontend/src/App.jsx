@@ -10,12 +10,13 @@ import SwapRequestsPage from './pages/SwapRequestsPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import Chatbot from './components/Chatbot';
 import ChatPage from './pages/ChatPage';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-brand-offwhite">
+      <div className="min-h-screen flex flex-col bg-brand-offwhite dark:bg-gray-900 transition-colors duration-300">
         <Navbar />
         <main className="flex-grow pt-16">
           <Routes>
@@ -31,6 +32,7 @@ function App() {
             <Route path="/chat/:requestId" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
           </Routes>
         </main>
+        <Chatbot />
       </div>
     </Router>
   );

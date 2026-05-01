@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import api from '../api/axios';
 import { AuthContext } from '../context/AuthContext';
-import { BookOpen, Menu, X, Compass, User, Inbox, LogOut, LayoutDashboard } from 'lucide-react';
+import { BookOpen, Menu, X, Compass, User, Inbox, LogOut, LayoutDashboard, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -10,6 +10,21 @@ const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return document.documentElement.classList.contains('dark');
+  });
+
+  const toggleDarkMode = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDarkMode(true);
+    }
+  };
 
   useEffect(() => {
     let intervalId;
@@ -43,7 +58,7 @@ const Navbar = () => {
   ] : [];
 
   return (
-    <nav className="fixed w-full z-50 glass-card rounded-none border-t-0 border-x-0 border-b border-gray-200">
+    <nav className="fixed w-full z-50 glass-card rounded-none border-t-0 border-x-0 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -57,6 +72,13 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             {user ? (
               <>
                 {navLinks.map((link) => (
@@ -66,7 +88,7 @@ const Navbar = () => {
                     className={`flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors ${
                       location.pathname === link.path 
                         ? 'text-brand-coral border-b-2 border-brand-coral' 
-                        : 'text-gray-600 hover:text-brand-violet'
+                        : 'text-gray-600 hover:text-brand-violet dark:text-gray-300 dark:hover:text-brand-cyan'
                     }`}
                   >
                     <div className="relative">
@@ -83,7 +105,7 @@ const Navbar = () => {
                 ))}
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 text-gray-600 hover:text-red-500 transition-colors text-sm font-medium"
+                  className="flex items-center gap-2 text-gray-600 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400 transition-colors text-sm font-medium"
                 >
                   <LogOut size={18} />
                   Logout
@@ -91,7 +113,7 @@ const Navbar = () => {
               </>
             ) : (
               <div className="flex items-center space-x-4">
-                <Link to="/login" className="text-gray-600 hover:text-brand-violet font-medium transition-colors">
+                <Link to="/login" className="text-gray-600 hover:text-brand-violet dark:text-gray-300 dark:hover:text-brand-cyan font-medium transition-colors">
                   Log in
                 </Link>
                 <Link to="/signup" className="bg-brand-navy hover:bg-brand-violet text-white px-5 py-2 rounded-full font-medium transition-colors">
@@ -102,10 +124,17 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-brand-navy focus:outline-none"
+              className="text-gray-600 hover:text-brand-navy dark:text-gray-300 dark:hover:text-white focus:outline-none p-2"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -124,7 +153,7 @@ const Navbar = () => {
                     key={link.name}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-coral hover:bg-gray-50"
+                    className="flex items-center gap-3 px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-coral hover:bg-gray-50 dark:text-gray-300 dark:hover:text-brand-cyan dark:hover:bg-gray-800 transition-colors"
                   >
                     {link.icon}
                     {link.name}
@@ -146,7 +175,7 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block text-center text-brand-navy font-medium py-2 rounded-lg hover:bg-gray-50 border border-gray-200"
+                  className="block text-center text-brand-navy dark:text-gray-200 font-medium py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-colors"
                 >
                   Log in
                 </Link>

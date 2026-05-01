@@ -32,8 +32,8 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-brand-navy">Welcome back, {user?.name.split(' ')[0]}! 👋</h1>
-        <p className="text-gray-600 mt-2">Here's what's happening in your learning circle.</p>
+        <h1 className="text-3xl font-bold text-brand-navy dark:text-white">Welcome back, {user?.name.split(' ')[0]}!</h1>
+        <p className="text-gray-600 dark:text-gray-300 mt-2">Here's what's happening in your learning circle.</p>
       </div>
 
       {unreadCount > 0 && (
@@ -47,7 +47,7 @@ const Dashboard = () => {
               <p className="text-sm text-red-600">Someone from your accepted swaps replied to you.</p>
             </div>
           </div>
-          <Link to="/requests" className="px-4 py-2 bg-white text-red-600 font-medium rounded-lg hover:bg-red-50 transition-colors border border-red-200">
+          <Link to="/requests" className="px-4 py-2 bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 font-medium rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 transition-colors border border-red-200 dark:border-red-800">
             View Chat
           </Link>
         </div>
@@ -58,8 +58,8 @@ const Dashboard = () => {
         <div className="glass-card p-6 border-l-4 border-l-brand-cyan">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-sm text-gray-500 font-medium">New Peers to Discover</p>
-              <h3 className="text-3xl font-bold text-brand-navy mt-1">{stats.peers}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">New Peers to Discover</p>
+              <h3 className="text-3xl font-bold text-brand-navy dark:text-white mt-1">{stats.peers}</h3>
             </div>
             <div className="p-3 bg-brand-cyan/10 rounded-xl text-brand-cyan">
               <Compass size={24} />
@@ -76,8 +76,8 @@ const Dashboard = () => {
         <div className="glass-card p-6 border-l-4 border-l-brand-coral">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-sm text-gray-500 font-medium">Pending Requests</p>
-              <h3 className="text-3xl font-bold text-brand-navy mt-1">{stats.requests}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Pending Requests</p>
+              <h3 className="text-3xl font-bold text-brand-navy dark:text-white mt-1">{stats.requests}</h3>
             </div>
             <div className="p-3 bg-brand-coral/10 rounded-xl text-brand-coral">
               <Inbox size={24} />
@@ -94,8 +94,8 @@ const Dashboard = () => {
         <div className="glass-card p-6 border-l-4 border-l-brand-violet">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-sm text-gray-500 font-medium">Skills I Want to Learn</p>
-              <h3 className="text-3xl font-bold text-brand-navy mt-1">{user?.skillsLearn?.length || 0}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Skills I Want to Learn</p>
+              <h3 className="text-3xl font-bold text-brand-navy dark:text-white mt-1">{user?.skillsLearn?.length || 0}</h3>
             </div>
             <div className="p-3 bg-brand-violet/10 rounded-xl text-brand-violet">
               <BookOpen size={24} />
@@ -112,7 +112,7 @@ const Dashboard = () => {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Next Steps */}
         <div className="glass-card p-8">
-          <h2 className="text-xl font-bold text-brand-navy mb-6">Next Steps</h2>
+          <h2 className="text-xl font-bold text-brand-navy dark:text-white mb-6">Next Steps</h2>
           <div className="space-y-4">
             {(!user?.skillsTeach?.length || !user?.skillsLearn?.length) ? (
               <div className="p-4 rounded-xl bg-orange-50 border border-orange-100 flex gap-4 items-start">
@@ -146,7 +146,7 @@ const Dashboard = () => {
 
         {/* Profile Snapshot */}
         <div className="glass-card p-8">
-          <h2 className="text-xl font-bold text-brand-navy mb-6">Profile Snapshot</h2>
+          <h2 className="text-xl font-bold text-brand-navy dark:text-white mb-6">Profile Snapshot</h2>
           <div className="flex items-center gap-4 mb-6">
             {user?.avatarImage ? (
               <img src={user.avatarImage} alt="Profile" className="w-16 h-16 rounded-2xl object-cover shadow-inner" />
@@ -159,8 +159,8 @@ const Dashboard = () => {
               </div>
             )}
             <div>
-              <h3 className="font-bold text-lg text-brand-navy">{user?.name}</h3>
-              <p className="text-sm text-gray-500">{user?.department || 'Add department in profile'}</p>
+              <h3 className="font-bold text-lg text-brand-navy dark:text-white">{user?.name}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{user?.department || 'Add department in profile'}</p>
             </div>
             <Link to="/profile" className="ml-auto text-sm text-brand-coral hover:underline">Edit</Link>
           </div>
@@ -171,7 +171,7 @@ const Dashboard = () => {
               <div className="flex flex-wrap gap-2">
                 {user?.skillsTeach?.length > 0 ? (
                   user.skillsTeach.map((skill, i) => (
-                    <span key={i} className="px-3 py-1 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-700 shadow-sm">
+                    <span key={i} className="px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-700 dark:text-gray-300 shadow-sm">
                       {skill}
                     </span>
                   ))
