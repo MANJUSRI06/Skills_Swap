@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import api from '../api/axios';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export const AuthContext = createContext();
 
@@ -19,7 +20,8 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('token');
         }
       }
-      setLoading(false);
+      // Added a small delay to ensure the loader feels smooth
+      setTimeout(() => setLoading(false), 500);
     };
 
     fetchUser();
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, setUser, loading, login, register, logout }}>
-      {!loading && children}
+      {loading ? <LoadingSpinner /> : children}
     </AuthContext.Provider>
   );
 };
